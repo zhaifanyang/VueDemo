@@ -1,15 +1,23 @@
 <template>
-    <el-row class='head' background-color="#444">
-      <el-col :xs='12' :sm='8' :md="6" class='top'>
+    <el-row class='head'>
+      <el-col :span='10' class='top' :offset='2'>
         <img src="../../assets/logo.svg">
       </el-col>
-      <el-col class='hidden-xs-only' :sm='10':md="12">
-        <el-input placeholder="请输入内容" v-model="input4">
-          <el-button slot="append" icon="el-icon-search"></el-button>
-        </el-input>
-      </el-col>
-      <el-col :xs='12' :sm='6' :md="6">
-        
+      <el-col :span='12'>
+        <el-button type="text" @click="dialogTableVisible = true" class='button'>关于</el-button>
+        <el-dialog title="Cnode" :visible.sync="dialogTableVisible">
+          <el-row style='margin:0.3125rem'>
+            <el-col :span='2'>Author</el-col>
+            <el-col :span='4'>ZF</el-col>
+          </el-row>
+          <el-row style='margin:0.3125rem'>
+            <el-col :span='2'>Skill</el-col>
+            <el-col :span='4'><el-tag>Vue.js</el-tag></el-col>
+            <el-col :span='6'><el-tag>Element-ui</el-tag></el-col>
+            <el-col :span='6'><el-tag>Axios</el-tag></el-col>
+            <el-col :span='6'><el-tag>Vue-router</el-tag></el-col>
+          </el-row>
+        </el-dialog>
       </el-col>
     </el-row>
 </template>
@@ -20,17 +28,10 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      input4: ''
+      input4: '',
+      dialogTableVisible:false
     }
   },
-  methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
-    }
 }
 </script>
 
@@ -43,8 +44,11 @@ export default {
 
 .head img{
   height: 1.25rem;
-  padding-left: 0.5rem;
   margin-top: 0.125rem
 }
-
+.button{
+  color: #fff;
+  font-size: 0.5rem;
+  font-weight: 600
+}
 </style>
