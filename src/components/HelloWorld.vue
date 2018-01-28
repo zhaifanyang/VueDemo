@@ -1,7 +1,7 @@
 <template>
   <div class="hello" v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading">
     <el-card class="box-card" v-for="data in datas" :key='data.id'>
-      <img :src="data.author.avatar_url">
+      <router-link :to="{name:'Author',params:{name:data.author.loginname}}"><img :src="data.author.avatar_url"></router-link>
       <div class="text item">
         <h5>{{data.title}}</h5>
         <p><span>访问量：{{data.visit_count}}</span><span>创建于：{{data.create_at}}</span></p>
@@ -11,9 +11,9 @@
       <el-pagination
         @current-change="handleCurrentChange"
         :current-page.sync="currentPage"
-        :page-size="10"
+        :page-size="1"
         layout="prev, pager, next, jumper"
-        :total="1000">
+        :total="100">
       </el-pagination>
     </div>
   </div>
@@ -49,7 +49,7 @@ export default {
         this.scrollTop()
       })
       .catch(error=>{
-        console.log('数据获取失败'+error)
+        console.log('数据获取失败')
       })
     },
     handleCurrentChange(val) {
@@ -75,6 +75,7 @@ export default {
 .hello{
   width: 60%;
   margin: 0 auto;
+  overflow: hidden;
 }
 .box-card{
   margin-top: 0.46875rem
@@ -100,6 +101,9 @@ export default {
   margin-top: 0.15625rem
 }
 .text.item p span{
-  padding-right: 1.25rem  
+  padding-right: 1.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;  
 }
 </style>
