@@ -1,10 +1,10 @@
 <template>
   <div class="hello" v-loading="loading" element-loading-text="拼命加载中" element-loading-spinner="el-icon-loading">
-    <el-card class="box-card" v-for="o in data">
-      <img :src="o.author.avatar_url">
+    <el-card class="box-card" v-for="data in datas" :key='data.id'>
+      <img :src="data.author.avatar_url">
       <div class="text item">
-        <h5>{{o.title}}</h5>
-        <p><span>访问量：{{o.visit_count}}</span><span>创建于：{{o.create_at}}</span></p>
+        <h5>{{data.title}}</h5>
+        <p><span>访问量：{{data.visit_count}}</span><span>创建于：{{data.create_at}}</span></p>
       </div>
     </el-card>
    <div class="block">
@@ -24,7 +24,7 @@ export default {
   name: 'HelloWorld',
   data() {
     return {
-      data:[],
+      datas:[],
       loading:true,
       currentPage:1
     };
@@ -45,7 +45,7 @@ export default {
           }
         })
       .then(res=>{
-        this.data = res.data.data;
+        this.datas = res.data.data;
         this.scrollTop()
       })
       .catch(error=>{
@@ -62,9 +62,9 @@ export default {
     }
   },
   watch:{
-    data(val){
+    datas(val){
       if (val) {
-        this.loading = false
+        this.loading = false;
       }
     }
   }
