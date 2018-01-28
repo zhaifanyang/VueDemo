@@ -1,12 +1,17 @@
 <template>
   <div id="app">
-    <router-view/>
+  	<Head></Head>
+  	<router-view></router-view>
   </div>
 </template>
 
 <script>
+import Head from './components/common/head'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+        Head,
+    },
 }
 </script>
 

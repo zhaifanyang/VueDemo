@@ -1,94 +1,37 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li>
-        <a
-          href="https://vuejs.org"
-          target="_blank"
-        >
-          Core Docs
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://forum.vuejs.org"
-          target="_blank"
-        >
-          Forum
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://chat.vuejs.org"
-          target="_blank"
-        >
-          Community Chat
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://twitter.com/vuejs"
-          target="_blank"
-        >
-          Twitter
-        </a>
-      </li>
-      <br>
-      <li>
-        <a
-          href="http://vuejs-templates.github.io/webpack/"
-          target="_blank"
-        >
-          Docs for This Template
-        </a>
-      </li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li>
-        <a
-          href="http://router.vuejs.org/"
-          target="_blank"
-        >
-          vue-router
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vuex.vuejs.org/"
-          target="_blank"
-        >
-          vuex
-        </a>
-      </li>
-      <li>
-        <a
-          href="http://vue-loader.vuejs.org/"
-          target="_blank"
-        >
-          vue-loader
-        </a>
-      </li>
-      <li>
-        <a
-          href="https://github.com/vuejs/awesome-vue"
-          target="_blank"
-        >
-          awesome-vue
-        </a>
-      </li>
-    </ul>
+    <el-card class="box-card" v-for="o in data">
+      <img :src="o.author.avatar_url">
+      <div class="text item">
+        <h5>{{o.title}}</h5>
+        <p><span>访问量：{{o.visit_count}}</span><span>创建于：{{o.create_at}}</span></p>
+      </div>
+    </el-card>
+  <button @click='getData'>add</button>
   </div>
 </template>
 
 <script>
 export default {
   name: 'HelloWorld',
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      currentDate: new Date(),
+      data:[]
+    };
+  },
+  created(){
+    this.getData()
+  },
+  methods:{
+    getData(){
+      this.$http.get('https://cnodejs.org/api/v1/topics')
+      .then(res=>{
+        this.data = res.data.data;
+      })
+      .catch(error=>{
+        console.log('数据获取失败'+error)
+      })
     }
   }
 }
@@ -96,18 +39,29 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+.hello{
+  width: 60%;
+  margin: 0 auto;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.box-card{
+  margin-top: 0.46875rem
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+.box-card img{
+  width: 2.0rem;
+  height: 2.0rem;
+  float: left;
+  padding-right: 0.3125rem
 }
-a {
-  color: #42b983;
+.text.item{
+  font-size: 0.78125rem;
+  text-align: left
+}
+.text.item p{
+  font-size: 0.5rem;
+  color: #8492A6;
+  margin-top: 0.15625rem
+}
+.text.item p span{
+  padding-right: 1.25rem  
 }
 </style>
