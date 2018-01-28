@@ -7,21 +7,21 @@
       </el-col>
       <el-col :span='12'>
         <el-button type="text" @click="dialogTableVisible = true" class='button'>关于</el-button>
-        <el-dialog title="Cnode" :visible.sync="dialogTableVisible">
+        <el-dialog title="cnode-学习" :visible.sync="dialogTableVisible">
           <el-row style='margin:0.3125rem'>
-            <el-col :span='2'>Author</el-col>
+            <el-col :span='4'>Author</el-col>
             <el-col :span='4'>ZF</el-col>
           </el-row>
           <el-row style='margin:0.3125rem'>
-            <el-col :span='2'>Skill</el-col>
-            <el-col :span='4'><el-tag type="danger"><a href="https://cn.vuejs.org/" target='_blank'>Vue.js</a></el-tag></el-col>
-            <el-col :span='6'><el-tag type="danger"><a href="http://element-cn.eleme.io/#/zh-CN/component/installation" target='_blank'>Element-ui</a></el-tag></el-col>
-            <el-col :span='6'><el-tag type="danger"><a href="https://github.com/axios/axios" target='_blank'>Axios</a></el-tag></el-col>
-            <el-col :span='6'><el-tag type="danger"><a href="https://router.vuejs.org/zh-cn/" target='_blank'>Vue-router</a></el-tag></el-col>
+            <el-col :span='4'>Skill</el-col>
+            <el-col :span='5'><el-tag type="danger"><a href="https://cn.vuejs.org/" target='_blank'>Vue.js</a></el-tag></el-col>
+            <el-col :span='5'><el-tag type="danger"><a href="http://element-cn.eleme.io/#/zh-CN/component/installation" target='_blank'>Element-ui</a></el-tag></el-col>
+            <el-col :span='5'><el-tag type="danger"><a href="https://github.com/axios/axios" target='_blank'>Axios</a></el-tag></el-col>
+            <el-col :span='5'><el-tag type="danger"><a href="https://router.vuejs.org/zh-cn/" target='_blank'>Vue-router</a></el-tag></el-col>
           </el-row>
           <el-row style='margin:0.3125rem'>
-            <el-col :span='2'>Github</el-col>
-            <el-col :span='4'><el-tag type="danger"><a href="https://github.com/zhaifanyang/VueDemo" target='_blank'>zhaifanyang.github.io</a></el-tag></el-col>
+            <el-col :span='4'>Github</el-col>
+            <el-col :span='5'><el-tag type="danger"><a href="https://github.com/zhaifanyang/VueDemo" target='_blank'>zhaifanyang.github.io</a></el-tag></el-col>
 
           </el-row>
         </el-dialog>
