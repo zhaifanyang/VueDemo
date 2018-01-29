@@ -19,16 +19,19 @@
     <div class="header">
         <span class="col_fade">{{titles.reply_count}} 回复</span>
       </div>
-    <div class="panel" v-for='(item,index) in titles.replies'>
+    <div class="panel" v-for='(item,index) in titles.replies' :key="item.id">
       
       <div class="cell reply_area reply_item
       " reply_id="5a5a07c0a3692d014f4f1435" reply_to_id="" id="5a5a07c0a3692d014f4f1435">
         <div class="author_content">
-          <a href="/user/atian25" class="user_avatar">
-            <img :src="item.author.avatar_url"></a>
+          <router-link :to="{name:'Author',params:{name:item.author.loginname}}">
+            <div class="user_avatar">
+              <img :src="item.author.avatar_url">
+            </div>
+          </router-link>
           <div class="user_info">
-            <a class="dark reply_author" href="/user/atian25">{{item.author.loginname}}</a>
-            <a class="reply_time" href="#5a5a07c0a3692d014f4f1435">{{index}}楼•15 天前</a>
+            <div class="dark reply_author">{{item.author.loginname}}</div>
+            <div class="reply_time" >{{index}}楼•15 天前</div>
           </div>
         </div>
         <div class="reply_content from-atian25" v-html="item.content">
@@ -53,12 +56,10 @@ export default {
     }
   },
   created(){
-    console.log(this.$route.path)
     this.$http({
       url:`https://cnodejs.org/api/v1/${this.$route.path}`,
       method:'get'
     }).then(res=>{
-      console.log(res.data.data);
       this.titles = res.data.data
     }).catch(error=>{
       console.log("没有获取到数据!"+error)
@@ -160,11 +161,12 @@ export default {
     margin-left: 10px;
     display: inline-block;
 }
-a.dark, a.dark:active, a.dark:link, a.dark:visited {
+div.dark, div.dark:active, div.dark:link, div.dark:visited {
     color: #666;
     text-decoration: none;
     text-overflow: ellipsis;
     font-size: 0.4375rem;
+    margin-top: 0.15625rem
 }
 .reply_time {
     font-size: 11px;

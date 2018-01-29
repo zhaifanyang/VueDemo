@@ -3,7 +3,9 @@
     <el-card class="box-card" v-for="data in datas" :key='data.id'>
       <router-link :to="{name:'Author',params:{name:data.author.loginname}}"><img :src="data.author.avatar_url"></router-link>
       <div class="text item">
-        <h5>{{data.title}}</h5>
+        <router-link :to="{name:'article',params:{id:data.id,name:data.author.loginname}}">
+          <h5>{{data.title}}</h5>
+        </router-link>
         <p><span>访问量：{{data.visit_count}}</span><span>创建于：{{data.create_at}}</span></p>
       </div>
     </el-card>

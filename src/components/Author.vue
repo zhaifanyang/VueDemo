@@ -50,7 +50,6 @@ export default {
       method: 'get'
     }).then(res=>{
       this.author = res.data.data;
-      console.log(this.author)
     }).catch(error=>{
       console.log('无法获取到信息')
     })
