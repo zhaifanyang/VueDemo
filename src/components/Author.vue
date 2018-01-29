@@ -18,7 +18,7 @@
       <router-link :to="{name: 'Author',params:{name:item.author.loginname}}">
         <img :src="item.author.avatar_url">
       </router-link>
-      <router-link :to="{name: 'Author'}">
+      <router-link :to="{name: 'article',params:{id:item.id,name:item.author.loginname}}">
         <span>{{item.title}}</span>
       </router-link>
     </div>
@@ -27,7 +27,7 @@
     <div class="head">最近创建的话题</div>
     <div class="recent" v-for="item in author.recent_topics" :key='item.id'>
         <img :src="item.author.avatar_url">
-      <router-link :to="{name: 'Author'}">
+      <router-link :to="{name: 'article',params:{id:item.id,name:item.author.loginname}}">
         <span>{{item.title}}</span>
       </router-link>
     </div>
@@ -50,12 +50,12 @@ export default {
       method: 'get'
     }).then(res=>{
       this.author = res.data.data;
+      console.log(this.author)
     }).catch(error=>{
       console.log('无法获取到信息')
     })
   },
   beforeRouteUpdate(to, from, next) {
-    console.log(to)
       this.$http({
           url: `https://cnodejs.org/api/v1${to.path}`,
           method: 'get',

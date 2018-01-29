@@ -46,7 +46,8 @@ export default {
 <style scoped>
 .head{
   background-color: #444;
-  height: 1.53125rem
+  height: 1.53125rem;
+  text-align: center
 }
 
 .head img{

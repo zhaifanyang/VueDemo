@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Author from '@/components/Author'
+import AAuthor from '@/components/Author'
+import article from '@/components/Article'
 
 Vue.use(Router)
 
@@ -14,7 +15,11 @@ export default new Router({
     },{
 	  path: '/user/:name',
       name: 'Author',
-      component: Author
+      component: AAuthor
+    },{
+	  path: '/topic/:id',
+      name: 'article',
+      component: article
     }
   ]
 })
